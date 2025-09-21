@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import './ColorMixerScreen.css';
+import PaintSplash from '../assets/paint_splash.jsx';
 import gameInterfaceImage from '../assets/spray-smile-lab.png'; 
-// MUDANÇA AQUI: Importamos a imagem de tijolos para usar no novo div de fundo
-import brickWallImage from '../assets/parede_tijolo.png'; // Verifique a extensão correta (.png, .jpeg, etc.)
+import brickWallImage from '../assets/parede_tijolo.png';
 
 function ColorMixerScreen() {
-  const [red, setRed] = useState(0);
+  const [red, setRed] = useState(255); // Valor inicial para vermelho
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
 
@@ -15,19 +15,26 @@ function ColorMixerScreen() {
   const blueColor = `rgb(0, 0, ${blue})`;
 
   return (
-    // NOVO DIV AQUI: Este será o fundo de tijolos APENAS para esta tela
     <div className="game-screen-background" style={{ backgroundImage: `url(${brickWallImage})` }}>
-
-      {/* O mixer-container e seus filhos permanecem como estão */}
+      {/* Mantemos seu container original com a imagem da interface como fundo */}
       <div className="mixer-container" style={{ backgroundImage: `url(${gameInterfaceImage})` }}>
         
-        {/* Círculos de Cores */}
-        <div className="color-circle circle-1" style={{ backgroundColor: redColor }}></div>
-        <div className="color-circle circle-2" style={{ backgroundColor: greenColor }}></div>
-        <div className="color-circle circle-3" style={{ backgroundColor: blueColor }}></div>
-        <div className="color-circle result-circle" style={{ backgroundColor: mixedColor }}></div>
+        {/* --- MUDANÇA 1: Círculos trocados por SVGs --- */}
+        {/* Usamos as mesmas divs e classes para manter o posicionamento exato */}
+        <div className="color-circle circle-1">
+          <PaintSplash color={redColor} />
+        </div>
+        <div className="color-circle circle-2">
+          <PaintSplash color={greenColor} />
+        </div>
+        <div className="color-circle circle-3">
+          <PaintSplash color={blueColor} />
+        </div>
+        <div className="color-circle result-circle">
+          <PaintSplash color={mixedColor} />
+        </div>
 
-        {/* Sliders de Controle */}
+        {/* --- MUDANÇA 2: Sliders recebem o estilo para a cor da bolinha --- */}
         <input
           type="range"
           min="0"
@@ -35,6 +42,7 @@ function ColorMixerScreen() {
           value={red}
           onChange={(e) => setRed(parseInt(e.target.value, 10))}
           className="slider slider-red"
+          style={{ '--thumb-color': redColor }} // Adicionado
         />
         <input
           type="range"
@@ -43,6 +51,7 @@ function ColorMixerScreen() {
           value={green}
           onChange={(e) => setGreen(parseInt(e.target.value, 10))}
           className="slider slider-green"
+          style={{ '--thumb-color': greenColor }} // Adicionado
         />
         <input
           type="range"
@@ -51,10 +60,10 @@ function ColorMixerScreen() {
           value={blue}
           onChange={(e) => setBlue(parseInt(e.target.value, 10))}
           className="slider slider-blue"
+          style={{ '--thumb-color': blueColor }} // Adicionado
         />
       </div>
-
-    </div> // Fim do novo div de fundo
+    </div>
   );
 }
 

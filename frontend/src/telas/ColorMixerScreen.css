@@ -1,134 +1,98 @@
-/* REMOVIDO: Este bloco inteiro do 'body' */
-/* body {
-  background-image: url('../assets/parede_tijolo.jpg');
-  background-repeat: repeat;
-  margin: 0;
-  padding: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-} */
-
-/* NOVO BLOCO: Estilo para o fundo de tijolos específico desta tela */
+/* Mantemos toda a sua estrutura de fundo e container */
 .game-screen-background {
-  width: 100%; /* Ocupa toda a largura da tela */
-  min-height: 100vh; /* Ocupa pelo menos a altura da tela */
-  
-  /* Estilos de fundo de tijolos */
+  width: 100%;
+  min-height: 100vh;
   background-repeat: repeat;
-  background-size: auto; /* Permite que o padrão de tijolos mantenha seu tamanho e se repita */
-  
-  /* Centraliza o conteúdo (mixer-container) dentro deste fundo */
+  background-size: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* Garante que o padding não adicione scrollbars */
   box-sizing: border-box;
-  padding: 20px; /* Adiciona um pequeno padding ao redor do jogo */
+  padding: 20px;
 }
 
-
-/* O container principal agora tem a imagem da interface (via JS) */
 .mixer-container {
   aspect-ratio: 1920 / 1080;
   width: 95vw;
   max-width: 1920px;
-  
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; /* A interface não se repete */
-  
+  background-repeat: no-repeat;
   position: relative;
-  /* 'margin: auto' não é mais necessário pois o body/game-screen-background está centralizando com flexbox */
 }
 
-/* --- TODO O RESTANTE DO CSS CONTINUA EXATAMENTE IGUAL --- */
-
-/* --- ESTILOS DOS CÍRCULOS (em porcentagens) --- */
+/* --- MUDANÇA 1: Limpeza da classe .color-circle --- */
 .color-circle {
   position: absolute;
-  border-radius: 50%;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  /* As propriedades abaixo não são mais necessárias, pois o SVG já tem a forma e a cor */
+  /* border-radius: 50%; */
+  /* box-shadow: inset 0 0 10px rgba(0,0,0,0.5); */
+
+  /* Adicionado para garantir que o SVG preencha o espaço corretamente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.circle-1 { 
-  top: 20.56%;    /* Original: 222px */
-  left: 6.93%;     /* Original: 133px */
-  width: 13.02%;   /* Original: 250px */
-  height: 23.15%;  /* Original: 250px */
-}
-.circle-2 { 
-  top: 20.56%;
-  left: 29.69%;
-  width: 13.02%;
-  height: 23.15%;
-}
-.circle-3 { 
-  top: 20.56%;
-  left: 53.02%;
-  width: 13.02%;
-  height: 23.15%;
-}
-.result-circle { 
-  top: 20.56%;
-  left: 80.21%;
-  width: 13.02%;
-  height: 23.15%;
-}
+/* O posicionamento dos círculos/SVGs permanece IDÊNTICO */
+.circle-1 { top: 20.56%; left: 6.93%; width: 18%; height: 30%; }
+.circle-2 { top: 20.56%; left: 29.69%; width: 18%; height: 30%; }
+.circle-3 { top: 20.56%; left: 53.02%; width: 18%; height: 30%; }
+.result-circle { top: 20.56%; left: 80.21%; width: 18%; height: 30%; }
 
-/* --- ESTILOS DOS SLIDERS (em porcentagens) --- */
+/* --- O estilo geral dos sliders permanece IDÊNTICO --- */
 .slider {
   position: absolute;
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 16.67%;   /* Original: 320px */
+  width: 16.67%;
 }
-
 .slider::-webkit-slider-runnable-track {
   height: 15px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
+
+  border: 2px solid #222; /* Borda escura sólida */
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+} 
+
+
 .slider::-moz-range-track {
   height: 15px;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
 
+  /* --- ADICIONE ESTAS LINHAS --- */
+  border: 2px solid #222;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+} 
+
+/* --- MUDANÇA 2: A cor da bolinha do slider --- */
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   margin-top: -10px;
   height: 35px;
   width: 35px;
-  background: #f0f0f0;
+  /* A linha abaixo foi alterada */
+  background: var(--thumb-color, #f0f0f0); /* Usa a variável de cor! */
   border-radius: 50%;
   border: 2px solid #333;
 }
 .slider::-moz-range-thumb {
   height: 35px;
   width: 35px;
-  background: #f0f0f0;
+  /* A linha abaixo foi alterada */
+  background: var(--thumb-color, #f0f0f0); /* Usa a variável de cor! */
   border-radius: 50%;
   border: 2px solid #333;
+
+  
 }
 
-.slider-red { 
-  top: 57.41%;
-  left: 12.6%;
-}
-.slider-green { 
-  top: 57.41%;
-  left: 34.9%;
-}
-.slider-blue { 
-  top: 57.41%;
-  left: 57.73%;
-}
+/* O posicionamento dos sliders permanece IDÊNTICO */
+.slider-red { top: 57.41%; left: 12.6%; }
+.slider-green { top: 57.41%; left: 34.9%; }
+.slider-blue { top: 57.41%; left: 57.73%; }
