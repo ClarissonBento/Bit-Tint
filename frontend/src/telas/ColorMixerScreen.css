@@ -1,0 +1,96 @@
+.game-screen-background {
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;  /* não repete */
+  background-size: cover;        /* cobre toda a tela */
+  background-position: center;   /* centraliza */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Container fullscreen responsivo */
+.mixer-container {
+  aspect-ratio: 16 / 9;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;    /* Troque para contain se quiser faixas pretas */
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Círculos de cores */
+.color-circle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* --- LINHAS ADICIONADAS --- */
+  /* Cria um contorno preto de 1px ao redor do SVG */
+  filter: drop-shadow(0.5px 0 0 black)
+          drop-shadow(0.5px 0 0 black)
+          drop-shadow(0 0.5px 0 black)
+          drop-shadow(0 1px 0 black);
+  /* --- FIM DAS LINHAS ADICIONADAS --- */
+}
+
+.circle-1 { top: 20.56%; left: 6.93%; width: 18%; height: 30%; }
+.circle-2 { top: 20.56%; left: 29.69%; width: 18%; height: 30%; }
+.circle-3 { top: 20.56%; left: 53.02%; width: 18%; height: 30%; }
+.result-circle { top: 20.56%; left: 80.21%; width: 18%; height: 30%; }
+
+/* Sliders */
+.slider {
+  position: absolute;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 16.67%;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  border: 2px solid #222;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+}
+
+.slider::-moz-range-track {
+  height: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  border: 2px solid #222;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -10px;
+  height: 35px;
+  width: 35px;
+  background: var(--thumb-color, #f0f0f0);
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.slider::-moz-range-thumb {
+  height: 35px;
+  width: 35px;
+  background: var(--thumb-color, #f0f0f0);
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+/* Posições dos sliders */
+.slider-red { top: 57.41%; left: 11.7%; }
+.slider-green { top: 57.41%; left: 34%; }
+.slider-blue { top: 57.41%; left: 56.6%; }
