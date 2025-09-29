@@ -1,0 +1,55 @@
+/*CSS responsavel pela tela inicial do jogo */
+
+.home-screen-container {
+  width: 100vw;
+  height: 100vh;
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative; 
+}
+
+/* --- Botao de Jogar --- */
+.start-button {
+  position: absolute;
+  top: 72%;      
+  left: 50.5%;      
+  width: 19%;     
+  aspect-ratio: 2.31/1; 
+  transform: translate(-50%, -50%); 
+
+  /* --- ESTILO DO BOTÃO --- */
+  background-image: url('../assets/botao_jogar.png');
+  background-size: 100% 100%;
+  border: none;
+  background-color: transparent;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  cursor: pointer;
+  
+  transition: transform 0.15s ease-in-out;
+}
+
+.start-button:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.start-button:active {
+  transform: translate(-50%, -50%) scale(0.98);
+}
+
+/* Estilo do texto "JOGAR" */
+.button-text {
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.6vw; 
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  padding-bottom: 4%;
+  position: relative; 
+  right: 3%;         
+}
