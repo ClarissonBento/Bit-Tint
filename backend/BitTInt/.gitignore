@@ -1,0 +1,73 @@
+# ===================================================================
+# Arquivo .gitignore para Projetos Spring Boot (Maven & Gradle)
+# ===================================================================
+
+# Arquivos de log
+*.log
+logs/
+
+# Arquivos temporários e de cache
+*.tmp
+*.temp
+
+# Arquivos de Build Tools
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Gradle
+build/
+.gradle/
+gradle-app.setting
+
+# Arquivos de pacotes gerados
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Arquivos compilados de Java
+*.class
+
+# Arquivos de configuração de IDEs
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+
+# VS Code
+.vscode/
+# Para compartilhar configurações específicas do VSCode, descomente as linhas abaixo
+#!.vscode/settings.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
+
+# Arquivos do sistema operacional
+# Mac
+.DS_Store
+# Windows
+Thumbs.db
+desktop.ini
+
+# Arquivos de configuração local/sensíveis
+# Use application-local.properties para suas configurações locais que não devem ir para o repo
+application-local.properties
+.env
+
+# Arquivos de dump de heap e relatórios de falha do HotSpot VM
+hs_err_pid*
+replay_pid*
