@@ -1,4 +1,4 @@
-//Implementação feita por Fabriciohva
+//Implementação inicial feita por Fabriciohva
 package com.ufv.BitTInt.model;
 
 import java.util.ArrayList;
