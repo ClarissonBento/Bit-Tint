@@ -11,7 +11,7 @@ function HomeScreen() {
   const navigate = useNavigate();
 
   const handleStartGame = () => {
-    navigate('/Fase1_ColorMixer'); 
+    navigate('/Registro'); 
   };
 
   return (

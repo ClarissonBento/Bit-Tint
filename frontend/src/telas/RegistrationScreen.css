@@ -1,0 +1,74 @@
+.registration-screen-container {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Essencial para o posicionamento absoluto dos botões */
+  position: relative; 
+}
+
+.registration-button {
+  /* Remove estilos padrão e prepara para usar a imagem de fundo */
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  /* Usa a sua arte como fundo do botão */
+  background-image: url('../assets/botao_jogar.png');
+  background-size: 100% 100%; /* Garante que a imagem preencha o botão */
+
+  /* Posicionamento absoluto relativo ao contêiner da tela */
+  position: absolute;
+  
+  /* Centraliza o texto perfeitamente dentro do botão */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.1s ease;
+}
+
+.registration-button:hover {
+  transform: scale(1.05);
+}
+
+.registration-button:active {
+  transform: scale(0.98);
+}
+
+.button-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.8vmin; /* Tamanho da fonte que se adapta à tela */
+  color: white;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  position: relative; /* Permite ajuste fino */
+  bottom: 2%; /* Empurra o texto um pouco para cima para melhor centralização */
+}
+
+/* --- POSICIONAMENTO INDIVIDUAL DE CADA BOTÃO --- */
+/* Você precisará ajustar estes valores para um encaixe perfeito! */
+
+.button-inscricao {
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza o botão */
+  width: 30%;
+  aspect-ratio: 3.5 / 1; /* Proporção do botão */
+}
+
+.button-turma {
+  top: 50%;
+  left: 28%; /* Posiciona o botão da esquerda */
+  width: 20%;
+  aspect-ratio: 2.75 / 1;
+}
+
+.button-alunos {
+  top: 50%;
+  left: 52%; /* Posiciona o botão da direita */
+  width: 20%;
+  aspect-ratio: 2.75 / 1;
+}
