@@ -1,74 +1,75 @@
+/* css da tela de registro */
+
 .registration-screen-container {
   width: 100vw;
   height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
-  /* Essencial para o posicionamento absoluto dos botões */
   position: relative; 
 }
 
-.registration-button {
-  /* Remove estilos padrão e prepara para usar a imagem de fundo */
+.reg-button {
   background-color: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-
-  /* Usa a sua arte como fundo do botão */
-  background-image: url('../assets/botao_jogar.png');
-  background-size: 100% 100%; /* Garante que a imagem preencha o botão */
-
-  /* Posicionamento absoluto relativo ao contêiner da tela */
+  background-image: url('../assets/botao_telas_cadastro.png');
+  background-size: 100% 100%;
   position: absolute;
-  
-  /* Centraliza o texto perfeitamente dentro do botão */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.registration-button:hover {
+.reg-button:hover {
   transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
-.registration-button:active {
+.reg-button:active {
   transform: scale(0.98);
+  filter: brightness(0.9);
 }
 
-.button-text {
+.reg-button-text {
   font-family: 'Press Start 2P', cursive;
-  font-size: 1.8vmin; /* Tamanho da fonte que se adapta à tela */
-  color: white;
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
-  position: relative; /* Permite ajuste fino */
-  bottom: 2%; /* Empurra o texto um pouco para cima para melhor centralização */
+  font-size: 3.5vmin; 
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+  position: relative;
+  bottom: 4%;
 }
 
-/* --- POSICIONAMENTO INDIVIDUAL DE CADA BOTÃO --- */
-/* Você precisará ajustar estes valores para um encaixe perfeito! */
-
-.button-inscricao {
-  top: 30%;
+.reg-button-login {
+  top: 30.5%;
   left: 50%;
-  transform: translateX(-50%); /* Centraliza o botão */
-  width: 30%;
-  aspect-ratio: 3.5 / 1; /* Proporção do botão */
+  transform: translateX(-50%);
+  width: 25%;
+  aspect-ratio: 3 / 1; 
 }
 
-.button-turma {
-  top: 50%;
-  left: 28%; /* Posiciona o botão da esquerda */
-  width: 20%;
-  aspect-ratio: 2.75 / 1;
+.reg-button-login:hover {
+  transform: translateX(-50%) scale(1.05); 
+  filter: brightness(1.2); 
 }
 
-.button-alunos {
-  top: 50%;
-  left: 52%; /* Posiciona o botão da direita */
+.reg-button-login:active {
+  transform: translateX(-50%) scale(0.98);
+  filter: brightness(0.9);
+}
+
+.reg-button-turma {
+  top: 54%;
+  left: 30%;
   width: 20%;
-  aspect-ratio: 2.75 / 1;
+  aspect-ratio: 2 / 1;
+}
+
+.reg-button-alunos {
+  top: 54%;
+  right: 28.5%;
+  width: 20%;
+  aspect-ratio: 2 / 1;
 }

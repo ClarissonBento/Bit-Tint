@@ -1,0 +1,88 @@
+/* css da tela de turma */
+
+.turma-screen-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.turma-back-button {
+  position: absolute;
+  top: 5.5%;
+  left: 3%;
+  width: 6%;
+  aspect-ratio: 1.2 / 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-image: url('../assets/seta_voltar_popup.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.turma-back-button:hover {
+  transform: scaleX(-1) scale(1.1);
+}
+
+.turma-modal-container {
+  width: 70vw;
+  max-width: 1000px;
+  aspect-ratio: 1.8 / 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.turma-button {
+  position: absolute;
+  top: 52%;
+  transform: translateY(-50%);
+  width: 38%;
+  aspect-ratio: 2.5 / 1;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-image: url('../assets/botao_telas_cadastro.png');
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.turma-button:hover {
+  transform: translateY(-50%) scale(1.05);
+  filter: brightness(1.1);
+}
+
+.turma-button:active {
+  transform: translateY(-50%) scale(0.98);
+  filter: brightness(0.9);
+}
+
+.button-criar {
+  left: 13%;
+}
+
+.button-ranking {
+  right: 12%;
+}
+
+.turma-button-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5vmin;
+  color: #333;
+  text-align: center;
+  line-height: 1.2;
+}

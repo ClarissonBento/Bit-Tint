@@ -1,36 +1,36 @@
+//Tela de Registro
+/* Esse é o codigo da tela que possui os 3 botões após clicar em jogar
+na tela inicial. Ela possui os caminhos que cada botão leva. */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './RegistrationScreen.css';
-// Importa a sua arte completa da tela
-import backgroundImage from '../assets/pop_up_completa.png'; 
+import brickWallImage from '../assets/pop_up_completa.png'; 
 
 function RegistrationScreen() {
   const navigate = useNavigate();
 
-  // Funções para cada botão (por enquanto, apenas mostram no console)
   const handleNavigation = (path) => {
     console.log(`Navegando para: ${path}`);
-    // No futuro, ative a linha abaixo:
-    // navigate(path);
+    navigate(path);
   };
 
   return (
     <div 
       className="registration-screen-container" 
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: `url(${brickWallImage})` }}
     >
-      {/* Os botões são posicionados via CSS para se alinharem com a imagem de fundo */}
-      <button className="registration-button button-inscricao" onClick={() => handleNavigation('/inscricao-form')}>
-        <span className="button-text">Inscrição</span>
+      <button className="reg-button reg-button-login" onClick={() => handleNavigation('/login')}>
+        <span className="reg-button-text">Login</span>
       </button>
 
-      <button className="registration-button button-turma" onClick={() => handleNavigation('/turmas')}>
-        <span className="button-text">Turma</span>
+      <button className="reg-button reg-button-turma" onClick={() => handleNavigation('/turma')}>
+        <span className="reg-button-text">Turma</span>
       </button>
       
-      <button className="registration-button button-alunos" onClick={() => handleNavigation('/alunos')}>
-        <span className="button-text">Alunos</span>
+      <button className="reg-button reg-button-alunos" onClick={() => handleNavigation('/cadastro')}>
+        <span className="reg-button-text">Inscrição</span>
       </button>
     </div>
   );
