@@ -1,6 +1,3 @@
-//Implementação inicial feita por Fabriciohva
-package com.ufv.BitTInt.model;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -32,18 +29,15 @@ public class Turma {
         }
 
         for (Aluno aluno : this.rankingAlunos) {
-            List<Integer> idsDosDesenhos = aluno.getDesenhos(); //
+            List<DesenhoAluno> DesenhosDoAluno = aluno.getDesenhos(); 
 
-            if (idsDosDesenhos.isEmpty()) { //
+            if (DesenhosDoAluno.isEmpty()) { //
                 System.out.println("  - Não possui desenhos registrados.");
             } else {
-                for (int i = 0; i < idsDosDesenhos.size(); i++) {
-                    System.out.print(idsDosDesenhos.get(i));
-                    if (i < idsDosDesenhos.size() - 1) {
-                        System.out.print(", ");
+                for (DesenhoAluno desenho : DesenhosDoAluno) {
+                    desenho.exibir();
                     }
                 }
             }
         }
     }
-}
