@@ -11,7 +11,14 @@ const TUTORIAL_DIALOGUES = [
   "Tenho essas tintas Vermelha, Azul e Verde, as tintas que formam as cores no seu computador, misturando elas podemos criar qualquer cor!",
   "Construa a cor azul, colocando sua tonalidade no máximo e zerando as outras duas cores, vermelho e verde."
 ];
-const FASE_1_CORES = [ { nome: 'Azul', r: 0, g: 0, b: 255 }, { nome: 'Verde', r: 0, g: 255, b: 0 }, { nome: 'Rosa Claro', r: 255, g: 0, b: 128 }, { nome: 'Rosa Magenta', r: 255, g: 0, b: 255 }, { nome: 'Preto', r: 0, g: 0, b: 0 } ];
+
+const FASE_1_CORES = [ 
+  { nome: 'Azul', r: 0, g: 0, b: 255 }, 
+  { nome: 'Verde', r: 0, g: 255, b: 0 }, 
+  { nome: 'Rosa Magenta', r: 255, g: 0, b: 255 }, 
+  { nome: 'Preto', r: 0, g: 0, b: 0 } 
+];
+
 const TOLERANCIA = 25;
 const TEMPO_DICA_MS = 10000; 
 
@@ -27,17 +34,14 @@ function Fase1Screen() {
   const [showHints, setShowHints] = useState(false);
   const [hintDirections, setHintDirections] = useState({ red: null, green: null, blue: null });
   const hintTimerRef = useRef(null);
-  
-  // --- MUDANÇA 1: Novo estado para controlar as falas no meio da fase ---
   const [interstitialDialogue, setInterstitialDialogue] = useState(null);
 
   const targetColor = FASE_1_CORES[currentColorIndex];
 
-  // ... (useEffect dos timers e das dicas permanecem os mesmos) ...
   useEffect(() => {
     clearTimeout(hintTimerRef.current);
     setShowHints(false);
-    if (!isTutorialActive && !isColorMatch && !interstitialDialogue) { // Só ativa o timer se não houver diálogo
+    if (!isTutorialActive && !isColorMatch && !interstitialDialogue) {
       hintTimerRef.current = setTimeout(() => { setShowHints(true); }, TEMPO_DICA_MS);
     }
     return () => clearTimeout(hintTimerRef.current);
@@ -68,30 +72,23 @@ function Fase1Screen() {
     }
   }, [red, green, blue, targetColor, isTutorialActive]);
 
-  // --- MUDANÇA 2: Função para fechar o diálogo e continuar o jogo ---
   const handleCloseDialogue = () => {
-    setInterstitialDialogue(null); // Limpa a mensagem de diálogo
-    
-    // Avança para a próxima cor (a lógica que estava no handleNextColor)
+    setInterstitialDialogue(null);
     const nextIndex = currentColorIndex + 1;
     if (nextIndex < FASE_1_CORES.length) {
       setCurrentColorIndex(nextIndex);
     }
   };
 
-  // --- MUDANÇA 3: Lógica principal de avanço de fase ---
   const handleNextColor = () => {
-    // Sempre adiciona a cor à lista de concluídas
     setCompletedColors([...completedColors, targetColor]);
-    setIsColorMatch(false); // Esconde o botão "Próxima"
+    setIsColorMatch(false);
     
-    // Se for a primeira cor (índice 0), ativa o diálogo e pausa o jogo
     if (currentColorIndex === 0) {
       setInterstitialDialogue("Muito bem! Agora construa as cores que aparecem aqui no topo, começando pelo verde!");
-      return; // Para a execução aqui até o jogador fechar o diálogo
+      return;
     }
     
-    // Para todas as outras cores, continua normalmente
     const nextIndex = currentColorIndex + 1;
     if (nextIndex < FASE_1_CORES.length) {
       setCurrentColorIndex(nextIndex);
@@ -107,14 +104,13 @@ function Fase1Screen() {
         red={red} setRed={setRed} green={green} setGreen={setGreen} blue={blue} setBlue={setBlue}
         redColor={redColor} greenColor={greenColor} blueColor={blueColor} mixedColor={mixedColor}
         completedColors={completedColors} targetColor={targetColor}
-        isColorMatch={isColorMatch && !isTutorialActive && !interstitialDialogue} // Botão só aparece se não houver diálogo
+        isColorMatch={isColorMatch && !isTutorialActive && !interstitialDialogue}
         onNextColor={handleNextColor}
         currentColorIndex={currentColorIndex}
         hintDirections={hintDirections}
         totalColors={FASE_1_CORES.length}
       />
       
-      {/* --- MUDANÇA 4: Renderização condicional dos diálogos --- */}
       {isTutorialActive && (
         <MascotTutorial 
           dialogues={TUTORIAL_DIALOGUES} 
@@ -123,8 +119,8 @@ function Fase1Screen() {
       )}
       {interstitialDialogue && (
         <MascotTutorial 
-          dialogues={[interstitialDialogue]} // Passamos a fala única como um array
-          onTutorialEnd={handleCloseDialogue} // Usamos a nova função para fechar
+          dialogues={[interstitialDialogue]}
+          onTutorialEnd={handleCloseDialogue}
         />
       )}
     </>

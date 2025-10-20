@@ -1,0 +1,91 @@
+/* css da tela de login */
+
+.login-screen-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.login-back-button {
+  position: absolute;
+  top: 5.5%;
+  left: 3%;
+  width: 6%;
+  aspect-ratio: 1.2 / 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-image: url('../assets/seta_voltar_popup.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+.login-back-button:hover {
+  transform: scaleX(-1) scale(1.1);
+}
+
+.login-modal-container {
+  width: 85vw;
+  aspect-ratio: 1.6 / 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form { width: 100%; height: 100%; position: relative; }
+.login-input { position: absolute; width: 45%; left: 50%; transform: translateX(-50%); padding: 2%; font-family: 'Press Start 2P', cursive; font-size: 1.5vmin; color: #333; background-color: white; border: 4px solid #222; border-radius: 10px; box-sizing: border-box; }
+.input-nickname { top: 35%; }
+.input-password { top: 55%; }
+
+.login-submit-button {
+  position: absolute;
+  bottom: 19%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%;
+  aspect-ratio: 3.5 / 1;
+  
+  background-color: transparent;
+  border: none;
+  
+  background-image: url('../assets/botao_telas_cadastro.png');
+  background-size: 100% 100%;
+  
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-submit-button:hover {
+  transform: translateX(-50%) scale(1.05);
+  filter: brightness(1.1); 
+}
+
+.login-submit-button:active {
+  transform: translateX(-50%) scale(0.98);
+  filter: brightness(0.9);
+}
+
+.login-button-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.2vmin; 
+  color: #333; 
+  position: relative;
+  bottom: 5%; 
+}
