@@ -1,0 +1,36 @@
+.fase-concluida-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+  cursor: pointer;
+}
+
+.concluido-imagem {
+  width: 50%; /* A imagem ocupa metade da largura da tela */
+  max-width: 600px; /* Limite para não ficar gigante em telas grandes */
+  height: auto;
+  filter: drop-shadow(0 0 15px #ffdd77); /* Brilho sutil */
+}
+
+.concluido-texto {
+  margin-top: 2rem;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px black;
+  animation: piscar 1.5s infinite; /* Efeito de piscar */
+}
+
+/* Animação para o texto piscar */
+@keyframes piscar {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
