@@ -1,0 +1,119 @@
+/* css da tela galeria-ranking */
+
+.gallery-ranking-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-ranking-back-button {
+  position: absolute;
+  top: 5.5%;
+  left: 3%;
+  width: 6%;
+  aspect-ratio: 1.2 / 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-image: url('../assets/seta_voltar_popup.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+.gallery-ranking-back-button:hover {
+  transform: scaleX(-1) scale(1.1);
+}
+
+.gallery-ranking-modal {
+  width: 85vw;
+  aspect-ratio: 16 / 9;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.clickable-tabs-container {
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42%;
+  height: 9%;
+  display: flex;
+  z-index: 5;
+}
+
+.tab-hitbox {
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.content-container {
+  position: absolute;
+  top: 22%;
+  left: 13%;
+  width: 74%;
+  height: 65%;
+  z-index: 4;
+  overflow-y: auto;
+}
+
+/* Estilos da Galeria (sem alterações) */
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 3%; width: 100%; height: 100%; }
+.gallery-item { background-color: white; border: 4px solid #222; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 5px; box-sizing: border-box; }
+.gallery-item img { width: 100%; height: 75%; object-fit: cover; border-radius: 5px; }
+.gallery-item p { margin: 5px 0 0 0; font-family: 'Press Start 2P', cursive; font-size: 1.2vmin; color: #333; }
+
+/* Estilos do Ranking */
+.ranking-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2vmin;
+  color: white;
+}
+.ranking-podium {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.podium-item {
+  display: flex;
+  align-items: center;
+}
+
+/* --- MUDANÇA PRINCIPAL AQUI --- */
+/* Estilo para a IMAGEM da medalha */
+.podium-medal-img {
+  width: 170px; /* Tamanho da imagem da medalha */
+  height: auto; /* Mantém a proporção */
+  margin-right: 2px;
+  flex-shrink: 0; /* Previne que a imagem encolha */
+}
+
+.ranking-others {
+  width: 48%;
+  border-left: 2px dashed rgba(255, 255, 255, 0.5);
+  padding-left: 5%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.other-item span {
+  margin-right: 5px;
+}

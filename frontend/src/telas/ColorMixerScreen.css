@@ -1,98 +1,137 @@
-/* Mantemos toda a sua estrutura de fundo e container */
-.game-screen-background {
-  width: 100%;
-  min-height: 100vh;
-  background-repeat: repeat;
-  background-size: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 20px;
-}
-
-.mixer-container {
-  aspect-ratio: 1920 / 1080;
-  width: 95vw;
-  max-width: 1920px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-/* --- MUDANÇA 1: Limpeza da classe .color-circle --- */
-.color-circle {
-  position: absolute;
-  /* As propriedades abaixo não são mais necessárias, pois o SVG já tem a forma e a cor */
-  /* border-radius: 50%; */
-  /* box-shadow: inset 0 0 10px rgba(0,0,0,0.5); */
-
-  /* Adicionado para garantir que o SVG preencha o espaço corretamente */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* O posicionamento dos círculos/SVGs permanece IDÊNTICO */
+/* Estilos gerais (sem alterações) */
+.game-screen-background { width: 100vw; height: 100vh; background-repeat: no-repeat; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0; margin: 0; overflow: hidden; }
+.mixer-container { aspect-ratio: 16 / 9; background-size: contain; background-position: center; background-repeat: no-repeat; position: relative; width: 100%; height: 100%; max-width: 100vw; max-height: 100vh; }
+.color-circle { position: absolute; display: flex; justify-content: center; align-items: center; filter: drop-shadow(0.5px 0 0 black) drop-shadow(0.5px 0 0 black) drop-shadow(0 0.5px 0 black) drop-shadow(0 1px 0 black); }
 .circle-1 { top: 20.56%; left: 6.93%; width: 18%; height: 30%; }
 .circle-2 { top: 20.56%; left: 29.69%; width: 18%; height: 30%; }
 .circle-3 { top: 20.56%; left: 53.02%; width: 18%; height: 30%; }
 .result-circle { top: 20.56%; left: 80.21%; width: 18%; height: 30%; }
+.completed-colors-container { position: absolute; top: 17%; left: 2%; display: flex; align-items: center; gap: 8px; z-index: 20; }
+.completed-color-circle { width: 30px; height: 30px; border-radius: 50%; border: 3px solid #222; box-shadow: inset 0 0 5px rgba(0,0,0,0.6); transition: all 0.3s ease; }
+.completed-color-circle.active { width: 45px; height: 45px; border: 4px solid white; box-shadow: 0 0 20px 5px rgba(255, 255, 150, 0.8), inset 0 0 8px rgba(0,0,0,0.5); }
+.completed-color-circle.placeholder { background-color: rgba(0, 0, 0, 0.4); box-shadow: inset 0 0 5px rgba(0,0,0,0.8); }
+.target-color-display { position: absolute; top: 2%; left: 2%; transform: none; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 10px 20px; border-radius: 10px; border: 2px solid #333; font-family: 'Press Start 2P', cursive; font-size: 0.8rem; text-align: left; z-index: 20; text-shadow: 1px 1px 2px black; }
+.next-button { background: transparent; border: none; padding: 0; cursor: pointer; position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%); width: 28%; z-index: 30; transition: transform 0.2s ease; }
+.next-button:hover { transform: translateX(-50%) scale(1.05); }
+.next-button img { width: 100%; height: auto; filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.5)); }
 
-/* --- O estilo geral dos sliders permanece IDÊNTICO --- */
-.slider {
+/* Estilos do Tutorial (sem alterações) */
+.tutorial-overlay { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 100; cursor: pointer; }
+.mascot-container { position: absolute; bottom: 5%; left: 2%; width: 65%; display: flex; align-items: flex-end; z-index: 100; }
+.mascot-image { width: 20%; height: auto; margin-right: -4%; z-index: 102; }
+.speech-bubble { flex-grow: 1; height: 25%; background-size: 100% 100%; background-repeat: no-repeat; padding: 3% 6%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; z-index: 101; }
+.speech-bubble p { margin: 0; color: #333; font-family: 'Press Start 2P', cursive; font-size: 1.8vmin; line-height: 1.4; text-align: center; }
+
+/* --- NOVOS ESTILOS PARA AS DICAS --- */
+
+/* Contêiner que agrupa o slider e sua seta de dica */
+.slider-container {
   position: absolute;
+  width: 16.67%; /* Mesma largura do slider */
+  display: flex;
+  flex-direction: column; /* Coloca a seta abaixo do slider */
+  align-items: center;
+  z-index: 10;
+}
+
+/* Posicionamento dos novos contêineres */
+.slider-red-container { top: 57.41%; left: 11.7%; }
+.slider-green-container { top: 57.41%; left: 34%; }
+.slider-blue-container { top: 57.41%; left: 56.6%; }
+
+/* O slider agora não precisa mais de posicionamento */
+.slider {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 16.67%;
+  width: 100%;
 }
-.slider::-webkit-slider-runnable-track {
-  height: 15px;
-  background: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
-  border-radius: 10px;
 
-  border: 2px solid #222; /* Borda escura sólida */
-  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
-} 
+.slider::-webkit-slider-runnable-track { height: 15px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; border: 2px solid #222; box-shadow: inset 0 0 4px rgba(0,0,0,0.8); }
+.slider::-moz-range-track { height: 15px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; border: 2px solid #222; box-shadow: inset 0 0 4px rgba(0,0,0,0.8); }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; margin-top: -10px; height: 35px; width: 35px; background: var(--thumb-color, #f0f0f0); border-radius: 50%; border: 2px solid #333; }
+.slider::-moz-range-thumb { height: 35px; width: 35px; background: var(--thumb-color, #f0f0f0); border-radius: 50%; border: 2px solid #333; }
 
-
-.slider::-moz-range-track {
-  height: 15px;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-
-  /* --- ADICIONE ESTAS LINHAS --- */
-  border: 2px solid #222;
-  box-shadow: inset 0 0 4px rgba(0,0,0,0.8);
-} 
-
-/* --- MUDANÇA 2: A cor da bolinha do slider --- */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: -10px;
-  height: 35px;
-  width: 35px;
-  /* A linha abaixo foi alterada */
-  background: var(--thumb-color, #f0f0f0); /* Usa a variável de cor! */
-  border-radius: 50%;
-  border: 2px solid #333;
+.hint-arrow-container {
+  width: 40px; /* Largura da seta */
+  height: auto;
+  margin-top: 8px; /* Espaço entre o slider e a seta */
+  animation: pulse 1s infinite; /* A animação de pulsação fica aqui */
 }
-.slider::-moz-range-thumb {
-  height: 35px;
-  width: 35px;
-  /* A linha abaixo foi alterada */
-  background: var(--thumb-color, #f0f0f0); /* Usa a variável de cor! */
-  border-radius: 50%;
-  border: 2px solid #333;
 
+/* 2. A imagem apenas preenche o espaço do contêiner */
+.hint-arrow-img {
+  width: 100%;
+  height: auto;
+  display: block; /* Remove espaços extras */
+  transition: transform 0.3s ease; /* Adiciona uma transição suave para a rotação */
+}
+
+/* 3. A classe de direção aplica a rotação APENAS na imagem */
+.hint-arrow-img-left {
+  transform: scaleX(-1);
+}
+
+/* A animação de pulsação agora só se preocupa com a escala, não com a rotação */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tutorial-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  cursor: pointer;
+}
+
+/* --- CONTROLE DA IMAGEM DO MASCOTE --- */
+.mascot-image {
+  position: absolute;
+  bottom: -2%; 
+  left: -6%;   
+  width: 32%; 
+  z-index: 102; 
+}
+
+/* --- CONTROLE DA IMAGEM DO BALÃO DE FALA --- */
+.speech-bubble {
+  position: absolute;
+  bottom: 8%;
+  left: 15%;
+  width: 60%;
+  height: 25%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3% 6%;
+  box-sizing: border-box;
+  z-index: 101;
+} 
   
-}
 
-/* O posicionamento dos sliders permanece IDÊNTICO */
-.slider-red { top: 57.41%; left: 12.6%; }
-.slider-green { top: 57.41%; left: 34.9%; }
-.slider-blue { top: 57.41%; left: 57.73%; }
+/* --- CONTROLE DO TEXTO DO BALÃO DE FALA --- */
+.speech-bubble p {
+  margin: 0;
+  color: #333; 
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2vmin;
+  line-height: 1.4;
+  text-align: center;
+}
