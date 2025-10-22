@@ -1,0 +1,63 @@
+/* O overlay cobre a tela inteira e centraliza o modal */
+.menu-overlay {
+  position: fixed; /* Usa 'fixed' para cobrir a tela inteira, mesmo que a página role */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Garante que o menu fique sobre todos os outros elementos */
+  backdrop-filter: blur(5px) brightness(0.7); /* Efeito para desfocar e escurecer o fundo */
+}
+
+/* O contêiner do modal, com a imagem de fundo personalizada */
+.menu-modal-container {
+  width: 85vw;
+  aspect-ratio: 1.2 / 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column; /* Empilha os botões verticalmente */
+  align-items: center;
+  justify-content: center;
+  gap: 2%; /* Espaço entre os botões */
+}
+
+/* Estilo base para ambos os botões (Continuar e Sair) */
+.menu-action-button {
+  width: 35%;
+  aspect-ratio: 4 / 1;
+  background-color: transparent;
+  border: none;
+  background-image: url('../assets/botao_telas_cadastro.png');
+  background-size: 100% 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-action-button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.menu-action-button:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+}
+
+/* Estilo do texto dentro dos botões */
+.menu-button-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.2vmin; 
+  color: #333; 
+  position: relative;
+  bottom: 5%; 
+}
