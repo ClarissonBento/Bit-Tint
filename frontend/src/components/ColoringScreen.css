@@ -1,0 +1,245 @@
+.coloring-screen-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Press Start 2P', cursive;
+  padding: 2vh;
+  box-sizing: border-box;
+}
+
+.coloring-main-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  width: 100%;
+  height: 100%;
+  gap: 2%;
+}
+
+/* LADO ESQUERDO */
+.drawing-grid-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.drawing-grid {
+  display: grid;
+  width: auto;
+  height: 100%; 
+  aspect-ratio: 1 / 1;
+  border: 4px solid #444;
+  background-color: white;
+}
+.pixel {
+  border: 1px solid black;
+  cursor: pointer;
+}
+.pixel-hint { background-color: #E0E0E0 !important; }
+.pixel-selected { border: 3px solid #00FFFF !important; box-shadow: 0 0 15px #00FFFF; z-index: 10; }
+.pixel-incorrect { border: 3px solid red !important; }
+
+/* LADO DIREITO */
+.ui-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2%;
+  min-height: 0;
+}
+
+.charada-box {
+  background-size: 100% 100%;
+  flex-basis: 25%;
+  padding: 8% 6%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.charada-content {
+  color: #333;
+  font-size: 2vmin;
+  line-height: 1.4;
+  text-align: center;
+}
+.lives-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.life-heart {
+  width: 3vmin;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+.life-heart.empty {
+  opacity: 0.2;
+}
+
+.charada-input {
+  width: 100%;
+  padding: 12px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.6vmin;
+  bottom: 4vmin;
+  text-align: center;
+  border: 4px solid #333;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.mascot-dialogue-container {
+  display: flex;
+  align-items: flex-end;
+}
+.dialogue-mascot-image {
+  width: 20vmin;
+  height: auto;
+  /* --- MUDANÇA 1: Posição do Mascote --- */
+  margin-right: -7vmin; /* Diminui a sobreposição */
+  position: relative;
+  left: -6vmin; /* Move o mascote um pouco para a esquerda */
+  z-index: 2;
+  flex-shrink: 0;
+}
+.dialogue-speech-bubble {
+  min-height: 10vmin;
+  background-size: 260% 100%;
+  padding: 2vmin 3vmin;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* --- MUDANÇA 2: Largura do Balão de Fala --- */
+   /* Força o balão a ocupar todo o espaço disponível */
+}
+.dialogue-speech-bubble p {
+  font-size: 1.8vmin;
+  color: #333;
+  text-align: center;
+}
+
+.color-palette {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.color-swatch {
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 4px solid #333;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+.color-swatch:hover { transform: scale(1.1); }
+.color-swatch:disabled { cursor: not-allowed; opacity: 0.5; }
+
+.action-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.action-title-image {
+  /* --- MUDANÇA 3: Tamanho e Posição do Título "Desenho" --- */
+  height: 15vmin; /* Aumenta a altura */
+  width: auto;
+  position: relative;
+  bottom: -2vmin; /* Move um pouco para baixo */
+}
+.home-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 10vmin;
+  height: 10vmin;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.home-button:hover { transform: scale(1.1); }
+
+.charade-input-container {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  border: 4px solid #333;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: text;
+}
+
+.hidden-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  caret-color: transparent;
+  outline: none;
+}
+
+.charade-visual-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vmin;
+}
+
+.char-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: 'Press Start 2P', cursive;
+  color: #333;
+  min-width: 2.2vmin;
+  min-height: 4vmin;
+}
+
+.char-typed {
+  font-size: 2.5vmin;
+  height: 3.5vmin;
+  line-height: 3.5vmin;
+  text-transform: uppercase;
+}
+
+.char-underscore {
+  font-size: 2.5vmin;
+  font-weight: bold;
+  color: #555;
+}
+
+.concluido-button {
+  width: 60%; /* Ocupa a maior parte do container */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.concluido-button:hover {
+  transform: scale(1.05);
+}
+
+.concluido-button img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.5));
+}

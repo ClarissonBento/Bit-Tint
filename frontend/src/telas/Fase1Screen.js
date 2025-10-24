@@ -1,29 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import ColorMixer from '../components/ColorMixer';
 import MascotTutorial from '../components/MascotTutorial';
+import { useAuth } from '../context/AuthContext';
 import './ColorMixerScreen.css';
+import useGameScreen from '../hooks/useGameScreen'; // Importa o nosso Hook centralizado
 
-// Constantes do Jogo
-const TUTORIAL_DIALOGUES = [
-  "Olá -nickname- eu sou o LilTint, que bom que você chegou pra me ajudar com meus grafites.",
-  "Minhas tintas acabaram, nessa primeira parte você pode me ajudar a misturar novas cores?",
-  "Tenho essas tintas Vermelha, Azul e Verde, as tintas que formam as cores no seu computador, misturando elas podemos criar qualquer cor!",
-  "Construa a cor azul, colocando sua tonalidade no máximo e zerando as outras duas cores, vermelho e verde."
-];
-
+// Constantes da fase
 const FASE_1_CORES = [ 
   { nome: 'Azul', r: 0, g: 0, b: 255 }, 
   { nome: 'Verde', r: 0, g: 255, b: 0 }, 
   { nome: 'Rosa Magenta', r: 255, g: 0, b: 255 }, 
   { nome: 'Preto', r: 0, g: 0, b: 0 } 
 ];
-
 const TOLERANCIA = 25;
 const TEMPO_DICA_MS = 10000; 
 
 function Fase1Screen() {
-  const navigate = useNavigate();
+  const { user } = useAuth();
+  
+  // --- AQUI ESTÁ A MÁGICA ---
+  // Usamos o Hook para obter a lógica e o componente do menu com uma única linha
+  const { handleMenuClick, MenuComponent } = useGameScreen();
+
+  // O resto da lógica específica da Fase 1 permanece intacta
+  const tutorialDialogues = useMemo(() => {
+    const nickname = user ? user.nickname : 'Jogador';
+    return [
+        `Olá ${nickname}, eu sou o LilTint, que bom que você chegou pra me ajudar com meus grafites.`,
+        "Minhas tintas acabaram, nessa primeira parte você pode me ajudar a misturar novas cores?",
+        "Tenho essas tintas Vermelha, Azul e Verde, as tintas que formam as cores no seu computador, misturando elas podemos criar qualquer cor!",
+        "Construa a cor azul, colocando sua tonalidade no máximo e zerando as outras duas cores, vermelho e verde."
+    ];
+  }, [user]);
+
   const [isTutorialActive, setIsTutorialActive] = useState(true);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [completedColors, setCompletedColors] = useState([]);
@@ -37,6 +46,7 @@ function Fase1Screen() {
   const [interstitialDialogue, setInterstitialDialogue] = useState(null);
 
   const targetColor = FASE_1_CORES[currentColorIndex];
+  const isLastColor = currentColorIndex === FASE_1_CORES.length - 1;
 
   useEffect(() => {
     clearTimeout(hintTimerRef.current);
@@ -94,12 +104,16 @@ function Fase1Screen() {
       setCurrentColorIndex(nextIndex);
     } else {
       alert("Parabéns, você completou a Fase 1!");
-      navigate('/fase-2');
+      // A navegação para a próxima fase deve ser adicionada aqui
+      // navigate('/fase-2');
     }
   };
 
   return (
     <>
+      {/* Simplesmente renderizamos o componente do menu que vem do Hook */}
+      {MenuComponent}
+
       <ColorMixer
         red={red} setRed={setRed} green={green} setGreen={setGreen} blue={blue} setBlue={setBlue}
         redColor={redColor} greenColor={greenColor} blueColor={blueColor} mixedColor={mixedColor}
@@ -109,11 +123,13 @@ function Fase1Screen() {
         currentColorIndex={currentColorIndex}
         hintDirections={hintDirections}
         totalColors={FASE_1_CORES.length}
+        isLastColor={isLastColor}
+        onMenuClick={handleMenuClick} // A função para abrir o menu vem direto do Hook
       />
       
       {isTutorialActive && (
         <MascotTutorial 
-          dialogues={TUTORIAL_DIALOGUES} 
+          dialogues={tutorialDialogues} 
           onTutorialEnd={handleTutorialEnd} 
         />
       )}
@@ -128,3 +144,4 @@ function Fase1Screen() {
 }
 
 export default Fase1Screen;
+

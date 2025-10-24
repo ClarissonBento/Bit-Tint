@@ -1,12 +1,10 @@
-//Primeira parte da Fase 2 do Jogo
-
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // useNavigate ainda é necessário para ir para a próxima fase
 import ColorMixer from '../components/ColorMixer';
 import MascotTutorial from '../components/MascotTutorial';
 import './ColorMixerScreen.css'; 
+import useGameScreen from '../hooks/useGameScreen'; // 1. Importa o Hook do menu
 
-// --- DADOS DA FASE 2 ---
 const TUTORIAL_DIALOGUES = [
   "Você mandou bem na primeira fase! Hora de dificultar um pouco.",
   "Agora vamos misturar cores secundárias. A lógica é a mesma.",
@@ -27,7 +25,11 @@ const TEMPO_DICA_MS = 8000;
 
 function Fase2Screen() {
   const navigate = useNavigate();
-  // A lógica de estados é idêntica à da Fase 1
+
+  // 2. Usa o Hook para obter a lógica e o componente do menu
+  const { handleMenuClick, MenuComponent } = useGameScreen();
+
+  // O resto da lógica da fase continua igual...
   const [isTutorialActive, setIsTutorialActive] = useState(true);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [completedColors, setCompletedColors] = useState([]);
@@ -40,6 +42,7 @@ function Fase2Screen() {
   const hintTimerRef = useRef(null);
 
   const targetColor = FASE_2_CORES[currentColorIndex];
+  const isLastColor = currentColorIndex === FASE_2_CORES.length - 1;
 
   useEffect(() => {
     clearTimeout(hintTimerRef.current);
@@ -82,6 +85,7 @@ function Fase2Screen() {
 
   const handleNextColor = () => {
     setCompletedColors([...completedColors, targetColor]);
+    setIsColorMatch(false); // Esconde o botão de "próxima cor"
     const nextIndex = currentColorIndex + 1;
     if (nextIndex < FASE_2_CORES.length) {
       setCurrentColorIndex(nextIndex);
@@ -93,6 +97,9 @@ function Fase2Screen() {
 
   return (
     <>
+      {/* 3. Renderiza o componente do menu que vem do Hook */}
+      {MenuComponent}
+
       <ColorMixer
         red={red} setRed={setRed} green={green} setGreen={setGreen} blue={blue} setBlue={setBlue}
         redColor={redColor} greenColor={greenColor} blueColor={blueColor} mixedColor={mixedColor}
@@ -100,8 +107,9 @@ function Fase2Screen() {
         isColorMatch={isColorMatch && !isTutorialActive} onNextColor={handleNextColor}
         currentColorIndex={currentColorIndex}
         hintDirections={hintDirections}
-        // Nova prop para o total de cores na fase
         totalColors={FASE_2_CORES.length}
+        isLastColor={isLastColor}
+        onMenuClick={handleMenuClick} // 4. Passa a função do Hook para o botão
       />
       {isTutorialActive && (
         <MascotTutorial 

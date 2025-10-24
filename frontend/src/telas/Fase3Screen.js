@@ -1,26 +1,23 @@
-//Primeira parte da Fase 3 do Jogo
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ColorMixer from '../components/ColorMixer';
 import MascotTutorial from '../components/MascotTutorial';
-import './ColorMixerScreen.css'; // Reutilizamos o mesmo estilo
+import './ColorMixerScreen.css';
+import useGameScreen from '../hooks/useGameScreen'; // 1. Importa o Hook do menu
 
-// --- DADOS DA FASE 3 ---
 const TUTORIAL_DIALOGUES = [
   "Incrível! Você já domina as cores primárias e secundárias.",
   "Agora o desafio é maior. Vamos trabalhar com tons e nuances.",
   "Preste atenção nas porcentagens. Você consegue!"
 ];
 
-// Convertendo as porcentagens para valores RGB (0-255)
 const FASE_3_CORES = [
-  { nome: 'Rosa Claro',   r: 255, g: 191, b: 191 }, // R:100%, G:75%, B:75%
-  { nome: 'Cinza',        r: 128, g: 128, b: 128 }, // R:50%, G:50%, B:50%
-  { nome: 'Azul Turquesa',r: 128, g: 191, b: 191 }, // R:50%, G:75%, B:75%
-  { nome: 'Lilás',        r: 191, g: 128, b: 191 }, // R:75%, G:50%, B:75%
-  { nome: 'Salmão',       r: 191, g: 64,  b: 64  }, // R:75%, G:25%, B:25%
-  { nome: 'Marrom',       r: 153, g: 102, b: 38  }  // R:60%, G:40%, B:15%
+  { nome: 'Rosa Claro',   r: 255, g: 191, b: 191 },
+  { nome: 'Cinza',        r: 128, g: 128, b: 128 },
+  { nome: 'Azul Turquesa',r: 128, g: 191, b: 191 },
+  { nome: 'Lilás',        r: 191, g: 128, b: 191 },
+  { nome: 'Salmão',       r: 191, g: 64,  b: 64  },
+  { nome: 'Marrom',       r: 153, g: 102, b: 38  }
 ];
 
 const TOLERANCIA = 25;
@@ -28,7 +25,11 @@ const TEMPO_DICA_MS = 8000;
 
 function Fase3Screen() {
   const navigate = useNavigate();
-  // A lógica de estados é idêntica às fases anteriores
+
+  // 2. Usa o Hook para obter a lógica e o componente do menu
+  const { handleMenuClick, MenuComponent } = useGameScreen();
+
+  // O resto da lógica da fase continua igual...
   const [isTutorialActive, setIsTutorialActive] = useState(true);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [completedColors, setCompletedColors] = useState([]);
@@ -41,8 +42,8 @@ function Fase3Screen() {
   const hintTimerRef = useRef(null);
 
   const targetColor = FASE_3_CORES[currentColorIndex];
+  const isLastColor = currentColorIndex === FASE_3_CORES.length - 1;
 
-  // Todos os useEffects e funções de handle são idênticos
   useEffect(() => {
     clearTimeout(hintTimerRef.current);
     setShowHints(false);
@@ -84,6 +85,7 @@ function Fase3Screen() {
 
   const handleNextColor = () => {
     setCompletedColors([...completedColors, targetColor]);
+    setIsColorMatch(false);
     const nextIndex = currentColorIndex + 1;
     if (nextIndex < FASE_3_CORES.length) {
       setCurrentColorIndex(nextIndex);
@@ -95,6 +97,9 @@ function Fase3Screen() {
 
   return (
     <>
+      {/* 3. Renderiza o componente do menu que vem do Hook */}
+      {MenuComponent}
+
       <ColorMixer
         red={red} setRed={setRed} green={green} setGreen={setGreen} blue={blue} setBlue={setBlue}
         redColor={redColor} greenColor={greenColor} blueColor={blueColor} mixedColor={mixedColor}
@@ -103,6 +108,8 @@ function Fase3Screen() {
         currentColorIndex={currentColorIndex}
         hintDirections={hintDirections}
         totalColors={FASE_3_CORES.length}
+        isLastColor={isLastColor}
+        onMenuClick={handleMenuClick} // 4. Passa a função do Hook para o botão
       />
       {isTutorialActive && (
         <MascotTutorial 
