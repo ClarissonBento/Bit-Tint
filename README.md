@@ -1,6 +1,6 @@
 # 🎨 Bit Tint: Jogo Educativo (Projeto Integrador)
 
-🎮 **[Link para o Jogo em Produção]** *http://tomcat.nupessc.caf.ufv.br/btint/*
+🎮 **[Link para o Jogo em Produção]** *(http://tomcat.nupessc.caf.ufv.br/btint/)*
 
 O **Bit Tint** é um jogo web educativo desenvolvido ao longo de 1 ano para alunos do 4º ano do Ensino Fundamental. O projeto está alinhado à Base Nacional Comum Curricular (BNCC), especialmente para o desenvolvimento do pensamento computacional, buscando ensinar de forma lúdica os conceitos de formação de imagens, RGB e pixels[cite: 1]. 
 
