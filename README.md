@@ -33,13 +33,13 @@ O sistema adota uma arquitetura em camadas totalmente desacoplada, conectada exc
 * **Banco de Dados:** MySQL (MySQL Driver 9.4)
 * **Frontend:** React 19, JavaScript (ES6+), React Router DOM, Webpack, CSS3
 * **Comunicação:** Integração client-server consumindo endpoints REST nativamente com a Fetch API do navegador
-* **Controle de Versão & Gestão:** Git, GitHub, Gitflow, Astah (UML), Trello / ClickUp
+* **Controle de Versão & Gestão:** Git, GitHub, Gitflow, Astah (UML), GitHub Actions
 
 ---
 
 ## 🗂️ Estrutura do Repositório
 
-Para cumprir os requisitos metodológicos do projeto (baseado em uma adaptação do processo MAGIC[cite: 1]), este repositório atua como fonte única de verdade:
+Para cumprir os requisitos metodológicos do projeto (baseado em uma adaptação do processo MAGIC), este repositório atua como fonte única de verdade:
 
 * `/docs`: Artefatos completos de Engenharia de Software (Documento de Requisitos, Prova de Conceito, Diagramas de Classes/Implantação e Métricas).
 * `/backend`: Aplicação Spring Boot e mapeamentos JPA.
