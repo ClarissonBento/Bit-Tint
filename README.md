@@ -1,55 +1,46 @@
 # 🎨 Bit Tint: Jogo Educativo (Projeto Integrador)
 
-🎮 **[Link para o Jogo em Produção]** *(http://tomcat.nupessc.caf.ufv.br/btint/)*
+🎮 **[Clique aqui para jogar a versão online](http://tomcat.nupessc.caf.ufv.br/btint/)**
 
-O **Bit Tint** é um jogo web educativo desenvolvido ao longo de 1 ano para alunos do 4º ano do Ensino Fundamental. O projeto está alinhado à Base Nacional Comum Curricular (BNCC), especialmente para o desenvolvimento do pensamento computacional, buscando ensinar de forma lúdica os conceitos de formação de imagens, RGB e pixels[cite: 1]. 
+O **Bit Tint** é um jogo web educativo desenvolvido ao longo de 1 ano para estudantes do 4º ano do Ensino Fundamental. O projeto foi projetado em conformidade com as diretrizes de pensamento computacional da Base Nacional Comum Curricular (BNCC), introduzindo de forma lúdica os conceitos fundamentais de bitmap, malhas de pixels e o modelo de cores RGB[cite: 1, 2].
 
-A dinâmica central envolve um sistema de colorir em *pixel-art*, integrado a um quiz com perguntas sugeridas pelas professoras da escola municipal. Acertos no quiz recompensam os alunos com tintas extras e bônus para completar as pinturas.
-
-O planejamento e a documentação seguiram uma adaptação do processo MAGIC[cite: 1]. 
+A aplicação conta com um misturador dinâmico de cores (canais R, G e B), desafios de colorir malhas quadriculadas, minigames/quiz com bônus pedagógicos e um ranking de pontuação por turma no formato de arcade clássico[cite: 2].
 
 ---
 
-## 🏗️ Minhas Contribuições (Papéis Acumulados)
+## 🏗️ Minhas Contribuições (Liderança Técnica)
 
-Atuei simultaneamente na liderança técnica do projeto, acumulando as responsabilidades de **Arquiteto de Software** e **Gerente de Configuração** em uma equipe mista de 17 desenvolvedores (juniores e seniores).
+Atuei simultaneamente como **Arquiteto de Software** e **Gerente de Configuração**, coordenando a base técnica para uma equipe mista de 17 desenvolvedores (juniores e seniores).
 
-**Como Arquiteto de Software:**
-* Concepção da Prova de Conceito (PoC) para validar a viabilidade técnica da aplicação.
-* Modelagem da arquitetura do sistema e definição do ecossistema de tecnologias (Frontend, Backend e Banco de Dados).
-* Validação contínua para garantir que a infraestrutura desenhada suportaria os requisitos dinâmicos definidos pela equipe ao longo dos semestres.
-* Responsável pelo deploy e configuração do jogo no servidor oficial da professora, garantindo 100% de entrega e estabilidade em produção.
+### Como Arquiteto de Software
+* **Concepção da Prova de Conceito (PoC):** Idealização, prototipação e validação da viabilidade técnica da arquitetura desacoplada cliente-servidor[cite: 2].
+* **Definição e Padronização da Stack:** Seleção criteriosa das tecnologias (Java 21, Spring Boot 3, React e MySQL) avaliando manutenibilidade, escalabilidade e curva de aprendizado para a equipe[cite: 2].
+* **Design de Backend & Persistência:** Estruturação de APIs RESTful com Spring Web e modelagem de persistência utilizando JPA/Hibernate para abstrair consultas ao banco de dados[cite: 2].
+* **Design de Frontend:** Definição da modularização em componentes reutilizáveis e arquitetura de telas (`NicknameScreen`, `ColorMixerScreen`, `BoardScreen`, `RankingScreen`) utilizando React Router DOM para gerenciamento de estados e rotas[cite: 2].
+* **Deploy em Produção:** Implantação e configuração do ambiente no servidor oficial da disciplina.
 
-**Como Gerente de Configuração:**
-* Definição e administração da estratégia de versionamento (Gitflow).
-* Gerenciamento de repositório unificado, orquestrando a integração contínua de código-fonte e uma vasta carga de documentação do ciclo de engenharia.
-* Resolução de conflitos de merge, reversões complexas, rebase e aplicação de *cherry-picks* para manter a integridade da branch principal durante as entregas da equipe de juniores e seniores.
+### Como Gerente de Configuração
+* **Estratégia de Versionamento:** Implementação do fluxo Gitflow em repositório unificado, integrando simultaneamente o código-fonte de frontend/backend e dezenas de artefatos de processo da Engenharia de Software[cite: 1].
+* **Integridade do Código:** Resolução de conflitos de merge, reversões críticas e aplicação de *cherry-picks* para manter as branches principais estáveis diante das entregas dos desenvolvedores juniores e seniores.
 
 ---
 
-## 🛠️ Tecnologias e Ferramentas
+## 🛠️ Stack Tecnológica & Arquitetura
 
-**Backend & Infraestrutura:**
-* Java & Spring Boot (APIs RESTful)
-* MySQL Workbench para modelagem e administração do banco de dados[cite: 1]
-* Deploy em servidor acadêmico (Linux)
+O sistema adota uma arquitetura em camadas totalmente desacoplada, conectada exclusivamente via APIs RESTful[cite: 2]:
 
-**Frontend:**
-* React & JavaScript
-* Prototipação de interfaces gráficas (UX/UI)[cite: 1]
-
-**Gestão & Engenharia:**
-* **Controle de Versão:** Git, GitHub[cite: 1]
-* **Metodologia:** Adaptação do processo MAGIC com ritos ágeis[cite: 1]
-* **Gestão de Tarefas e Planejamento:** Trello e Clickup[cite: 1]
-* **Diagramação e Modelagem:** Astah[cite: 1]
+* **Backend:** Java 21, Spring Boot 3.5.5, Spring Web, Spring Data JPA / Hibernate, Maven[cite: 2]
+* **Banco de Dados:** MySQL (MySQL Driver 9.4)[cite: 2]
+* **Frontend:** React 19, JavaScript (ES6+), React Router DOM, Webpack, CSS3[cite: 2]
+* **Comunicação:** Integração client-server consumindo endpoints REST nativamente com a Fetch API do navegador[cite: 2]
+* **Controle de Versão & Gestão:** Git, GitHub, Gitflow, Astah (UML), Trello / ClickUp[cite: 1]
 
 ---
 
 ## 🗂️ Estrutura do Repositório
 
-Este repositório atua como a fonte única da verdade do projeto (Single Source of Truth). Para atender aos requisitos de auditoria da disciplina, o repositório foi dividido da seguinte forma:
+Para cumprir os requisitos metodológicos do projeto (baseado em uma adaptação do processo MAGIC[cite: 1]), este repositório atua como fonte única de verdade:
 
-* `/docs`: Todos os artefatos de Engenharia de Software (Documento de Requisitos, Diagramas de Implantação e Classes, Cronogramas e Relatórios de Processo)[cite: 1].
-* `/backend`: Código-fonte da API em Java/Spring Boot.
-* `/frontend`: Código-fonte da interface web em React.
+* `/docs`: Artefatos completos de Engenharia de Software (Documento de Requisitos, Prova de Conceito, Diagramas de Classes/Implantação e Métricas)[cite: 1, 2].
+* `/backend`: Aplicação Spring Boot e mapeamentos JPA[cite: 2].
+* `/frontend`: Aplicação React com componentes modulares e roteamento[cite: 2].
